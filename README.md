@@ -261,22 +261,3 @@ Project screenshots are available in:
 * Larger product image testing dataset
 * Improved validation and confidence scoring
 * Better handling of complex packaging layouts
-
-## Innovation
-
-The prototype focuses on:
-
-* **Automated compliance screening** instead of only OCR
-* **Product-independent processing** rather than product-specific hardcoding
-* **Uncertainty-aware results** to avoid treating OCR failure as definite non-compliance
-* **Field-level explainability** showing which declarations were detected
-* **End-to-end workflow** from product image to compliance result
-
-## Disclaimer
-
-This tool provides automated screening assistance and is not a substitute for official legal inspection, verification, or certification.
-
-````
-
-
-readme cahnge kro 
