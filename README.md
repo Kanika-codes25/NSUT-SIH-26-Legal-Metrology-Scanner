@@ -1,5 +1,4 @@
 
-````markdown
 # Legal Metrology Scanner
 
 A web-based prototype that scans packaged commodity labels and performs automated screening against selected Legal Metrology requirements.
@@ -199,7 +198,7 @@ NSUT-SIH-26-Legal-Metrology-Scanner/
 Clone the repository:
 
 ```bash
-git clone (https://github.com/Kanika-codes25/NSUT-SIH-26-Legal-Metrology-Scanner/blob/main/README.md)
+git clone https://github.com/Kanika-codes25/NSUT-SIH-26-Legal-Metrology-Scanner.git
 ```
 
 Then install the required dependencies:
