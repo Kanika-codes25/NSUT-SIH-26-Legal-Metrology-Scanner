@@ -1,7 +1,7 @@
 # Project Presentation
 
 ## Presentation File
-[Open Final Presentation](./SIH2026-IDEA-Presentation-Format.pptx)
+[Open Final Presentation](./SIH2026-IDEA-Presentation-Format.pptx.pptx)
 
 
 The final SIH 2026 presentation for **The Hexad Debuggers** is included in this folder.
