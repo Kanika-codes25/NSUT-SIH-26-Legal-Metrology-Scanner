@@ -199,7 +199,7 @@ NSUT-SIH-26-Legal-Metrology-Scanner/
 Clone the repository:
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone (https://github.com/Kanika-codes25/NSUT-SIH-26-Legal-Metrology-Scanner/blob/main/README.md)
 ```
 
 Then install the required dependencies:
