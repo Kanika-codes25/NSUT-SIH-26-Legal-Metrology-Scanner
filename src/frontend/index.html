@@ -1,0 +1,772 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Legal Metrology Scanner</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f3f5f7;
+            color: #222;
+        }
+
+        /* HEADER */
+
+        header {
+            background: #12355b;
+            color: white;
+            border-bottom: 4px solid #e3a008;
+        }
+
+        .header-inner {
+            max-width: 1100px;
+            margin: auto;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .symbol {
+            width: 48px;
+            height: 48px;
+            border: 2px solid white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+        }
+
+        .title h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .title p {
+            margin: 4px 0 0;
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .team-name {
+            font-size: 13px;
+            font-weight: bold;
+            padding: 8px 12px;
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 4px;
+        }
+
+        /* MAIN */
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .intro {
+            background: white;
+            border: 1px solid #d5d9dd;
+            padding: 22px;
+            margin-bottom: 20px;
+        }
+
+        .intro h2 {
+            margin: 0 0 8px;
+            color: #12355b;
+        }
+
+        .intro p {
+            margin: 0;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* UPLOAD CARD */
+
+        .upload-box {
+            background: white;
+            border: 1px solid #d5d9dd;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .upload-box h3 {
+            margin-top: 0;
+            color: #12355b;
+        }
+
+        .upload-area {
+            border: 2px dashed #b8c1ca;
+            padding: 28px;
+            text-align: center;
+            background: #fafbfc;
+            transition: 0.2s;
+        }
+
+        .upload-area:hover {
+            border-color: #12355b;
+            background: #f5f8fb;
+        }
+
+        .upload-area p {
+            color: #666;
+            margin: 8px 0;
+        }
+
+        input[type="file"] {
+            margin: 12px 0;
+        }
+
+        button {
+            background: #12355b;
+            color: white;
+            border: none;
+            padding: 11px 25px;
+            font-size: 15px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        button:hover {
+            background: #0d2947;
+        }
+
+        button:disabled {
+            background: #888;
+            cursor: not-allowed;
+        }
+
+        #fileName {
+            margin-top: 8px;
+            color: #555;
+            font-size: 13px;
+        }
+
+        #loading {
+            display: none;
+            margin-top: 15px;
+            color: #12355b;
+            font-weight: bold;
+        }
+
+        /* RESULTS */
+
+        #results {
+            display: none;
+        }
+
+        .section {
+            background: white;
+            border: 1px solid #d5d9dd;
+            margin-bottom: 20px;
+            padding: 22px;
+        }
+
+        .section h3 {
+            color: #12355b;
+            border-bottom: 2px solid #e3a008;
+            padding-bottom: 9px;
+            margin-top: 0;
+        }
+
+        /* RESULT */
+
+        .result-box {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+        }
+
+        #overallStatus {
+            margin: 5px 0;
+            font-size: 25px;
+        }
+
+        #summary {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .compliant {
+            color: #198754;
+        }
+
+        .review {
+            color: #b77900;
+        }
+
+        /* INFORMATION */
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .info-card {
+            border: 1px solid #ddd;
+            padding: 14px;
+            background: #fafafa;
+            transition: 0.2s;
+        }
+
+        .info-card:hover {
+            background: #f3f6f8;
+            border-color: #b7c1ca;
+        }
+
+        .info-card strong {
+            display: block;
+            color: #555;
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+
+        .info-card span {
+            font-size: 15px;
+        }
+
+        /* COMPLIANCE */
+
+        .check {
+            padding: 13px;
+            margin: 8px 0;
+            background: #fafafa;
+            border: 1px solid #ddd;
+            border-left: 5px solid #999;
+        }
+
+        .yes {
+            border-left-color: #198754;
+        }
+
+        .uncertain {
+            border-left-color: #e3a008;
+        }
+
+        .status {
+            font-weight: bold;
+        }
+
+        /* OCR */
+
+        .ocr-text {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 15px;
+            white-space: pre-wrap;
+            font-family: Consolas, monospace;
+            font-size: 13px;
+            max-height: 280px;
+            overflow-y: auto;
+        }
+
+        /* DISCLAIMER */
+
+        .disclaimer {
+            background: #fff8e1;
+            border: 1px solid #e5d18a;
+            padding: 15px;
+            font-size: 13px;
+            color: #5c5000;
+            line-height: 1.5;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #12355b;
+            color: white;
+            text-align: center;
+            padding: 18px;
+            margin-top: 40px;
+            font-size: 13px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 650px) {
+
+            .header-inner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="header-inner">
+
+            <div class="brand-area">
+
+                <div class="symbol">
+                    ⚖
+                </div>
+
+                <div class="title">
+                    <h1>Legal Metrology Scanner</h1>
+                    <p>Packaged Commodity Compliance Screening System</p>
+                </div>
+
+            </div>
+
+            <div class="team-name">
+                The Hexad Debuggers
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- MAIN -->
+
+    <div class="container">
+
+
+        <!-- INTRO -->
+
+        <div class="intro">
+
+            <h2>Product Compliance Screening</h2>
+
+            <p>
+                Upload an image of a packaged commodity to extract
+                relevant declarations and screen them against
+                selected Legal Metrology requirements.
+            </p>
+
+        </div>
+
+
+        <!-- UPLOAD -->
+
+        <div class="upload-box">
+
+            <h3>Upload Product Image</h3>
+
+            <div class="upload-area">
+
+                <p>
+                    Select a clear image of the product packaging
+                </p>
+
+                <input
+                    type="file"
+                    id="imageInput"
+                    accept="image/*"
+                    onchange="showFileName()"
+                >
+
+                <div id="fileName">
+                    No file selected
+                </div>
+
+                <button
+                    id="scanButton"
+                    onclick="scanImage()"
+                >
+                    Scan Product
+                </button>
+
+                <div id="loading">
+                    Processing image...
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESULTS -->
+
+        <div id="results">
+
+
+            <!-- SCREENING RESULT -->
+
+            <div class="section">
+
+                <h3>Screening Result</h3>
+
+                <div class="result-box">
+
+                    <h2 id="overallStatus">-</h2>
+
+                    <p id="summary">-</p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT INFORMATION -->
+
+            <div class="section">
+
+                <h3>Extracted Product Information</h3>
+
+                <div class="info-grid">
+
+                    <div class="info-card">
+                        <strong>Product Name</strong>
+                        <span id="productName">-</span>
+                    </div>
+
+                    <div class="info-card">
+                        <strong>Brand</strong>
+                        <span id="brand">-</span>
+                    </div>
+
+                    <div class="info-card">
+                        <strong>Net Quantity</strong>
+                        <span id="netQuantity">-</span>
+                    </div>
+
+                    <div class="info-card">
+                        <strong>Maximum Retail Price</strong>
+                        <span id="price">-</span>
+                    </div>
+
+                    <div class="info-card">
+                        <strong>Batch Number</strong>
+                        <span id="batch">-</span>
+                    </div>
+
+                    <div class="info-card">
+                        <strong>Manufacturing Date</strong>
+                        <span id="mfgDate">-</span>
+                    </div>
+
+                    <div class="info-card">
+                        <strong>Expiry / Best Before</strong>
+                        <span id="expiry">-</span>
+                    </div>
+
+                    <div class="info-card">
+                        <strong>Barcode</strong>
+                        <span id="barcode">-</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMPLIANCE -->
+
+            <div class="section">
+
+                <h3>Legal Metrology Screening</h3>
+
+                <div id="complianceChecks"></div>
+
+            </div>
+
+
+            <!-- OCR -->
+
+            <div class="section">
+
+                <h3>OCR Extracted Text</h3>
+
+                <div
+                    id="ocrText"
+                    class="ocr-text"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <!-- DISCLAIMER -->
+
+            <div class="disclaimer">
+
+                <strong>Disclaimer:</strong>
+                This system provides automated compliance screening
+                based on selected Legal Metrology requirements.
+                It is a prototype screening tool and does not
+                constitute legal certification or a final determination
+                of regulatory compliance.
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+        The Hexad Debuggers &nbsp;|&nbsp;
+        Legal Metrology Scanner
+    </footer>
+
+
+    <script>
+
+        function showFileName() {
+
+            const input =
+                document.getElementById("imageInput");
+
+            const fileName =
+                document.getElementById("fileName");
+
+            if (input.files.length > 0) {
+
+                fileName.textContent =
+                    "Selected: " + input.files[0].name;
+
+            } else {
+
+                fileName.textContent =
+                    "No file selected";
+
+            }
+
+        }
+
+
+        async function scanImage() {
+
+            const input =
+                document.getElementById("imageInput");
+
+            const button =
+                document.getElementById("scanButton");
+
+            const loading =
+                document.getElementById("loading");
+
+            const results =
+                document.getElementById("results");
+
+
+            if (!input.files.length) {
+
+                alert("Please select a product image first.");
+
+                return;
+            }
+
+
+            const file = input.files[0];
+
+            const formData = new FormData();
+
+            formData.append("file", file);
+
+
+            button.disabled = true;
+
+            button.textContent = "Scanning...";
+
+            loading.style.display = "block";
+
+            results.style.display = "none";
+
+
+            try {
+
+                const response = await fetch(
+                    "https://legal-metrology-api-cchq.onrender.com/upload",
+                    {
+                        method: "POST",
+                        body: formData
+                    }
+                );
+
+
+                if (!response.ok) {
+
+                    throw new Error("Server error");
+
+                }
+
+
+                const data = await response.json();
+
+                displayResults(data);
+
+                results.style.display = "block";
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert(
+                    "Could not connect to the backend.\n\n" +
+                    "Please make sure FastAPI is running."
+                );
+
+            } finally {
+
+                button.disabled = false;
+
+                button.textContent = "Scan Product";
+
+                loading.style.display = "none";
+
+            }
+
+        }
+
+
+        function displayResults(data) {
+
+            const product = data.product;
+
+            const compliance = data.compliance;
+
+
+            /* PRODUCT INFORMATION */
+
+            document.getElementById("productName").textContent =
+                product.product_name || "Not detected";
+
+            document.getElementById("brand").textContent =
+                product.brand || "Not detected";
+
+            document.getElementById("netQuantity").textContent =
+                product.net_quantity || "Not detected";
+
+            document.getElementById("price").textContent =
+                product.price
+                    ? "₹" + product.price
+                    : "Not detected";
+
+            document.getElementById("batch").textContent =
+                product.batch_number || "Not detected";
+
+            document.getElementById("mfgDate").textContent =
+                product.manufacturing_date || "Not detected";
+
+            document.getElementById("expiry").textContent =
+                product.expiry || "Not detected";
+
+            document.getElementById("barcode").textContent =
+                product.barcode || "Not detected";
+
+
+            /* OVERALL RESULT */
+
+            const overall =
+                document.getElementById("overallStatus");
+
+            overall.textContent =
+                compliance.overall_status;
+
+
+            if (compliance.overall_status === "COMPLIANT") {
+
+                overall.className = "compliant";
+
+            } else {
+
+                overall.className = "review";
+
+            }
+
+
+            document.getElementById("summary").textContent =
+                compliance.checks_passed +
+                " checks detected • " +
+                compliance.checks_uncertain +
+                " require review";
+
+
+            /* COMPLIANCE CHECKS */
+
+            const container =
+                document.getElementById("complianceChecks");
+
+            container.innerHTML = "";
+
+
+            for (
+                const [key, check]
+                of Object.entries(compliance.checks)
+            ) {
+
+                const div =
+                    document.createElement("div");
+
+
+                div.className =
+                    "check " +
+                    (
+                        check.status === "YES"
+                            ? "yes"
+                            : "uncertain"
+                    );
+
+
+                div.innerHTML = `
+                    <span class="status">
+                        ${check.status}
+                    </span>
+                    — ${check.message}
+                `;
+
+
+                container.appendChild(div);
+
+            }
+
+
+            /* OCR TEXT */
+
+            document.getElementById("ocrText").textContent =
+                data.ocr_text ||
+                "No OCR text detected.";
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+```
