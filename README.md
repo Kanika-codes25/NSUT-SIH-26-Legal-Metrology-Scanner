@@ -233,9 +233,9 @@ The frontend communicates with the FastAPI backend through the `/upload` endpoin
 
 ## Project Presentation
 
-[View Project Presentation](submission/YOUR_PPT_FILENAME.pptx)
+[View Project Presentation](submission/(https://docs.google.com/presentation/d/1nTvaIKL3AnWE5Cwx8j53GcoN5YpMIVWk/edit?usp=drive_link&ouid=105367312572154190920&rtpof=true&sd=true))
 
-> Replace `YOUR_PPT_FILENAME.pptx` with the exact name of the PPT file uploaded to the `submission/` folder.
+> Replace `https://docs.google.com/presentation/d/1nTvaIKL3AnWE5Cwx8j53GcoN5YpMIVWk/edit?usp=drive_link&ouid=105367312572154190920&rtpof=true&sd=true` with the exact name of the PPT file uploaded to the `submission/` folder.
 
 ## Screenshots
 
