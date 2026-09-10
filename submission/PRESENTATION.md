@@ -4,7 +4,7 @@
 
 ### PowerPoint Presentation
 
-[Open Final Presentation (PPTX)]((https://docs.google.com/presentation/d/1nTvaIKL3AnWE5Cwx8j53GcoN5YpMIVWk/edit?slide=id.p1#slide=id.p1))
+[Open Final Presentation (PPTX)](https://docs.google.com/presentation/d/1nTvaIKL3AnWE5Cwx8j53GcoN5YpMIVWk/edit?slide=id.p1#slide=id.p1))
 
 ### PDF Presentation
 
