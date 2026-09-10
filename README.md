@@ -2,9 +2,19 @@
 
 A web-based prototype that scans packaged commodity labels and performs automated screening against selected Legal Metrology requirements.
 
-## Problem
+## Problem Statement
 
-Manual verification of packaged product labels can be time-consuming and error-prone. Important declarations such as MRP, net quantity, manufacturer details and dates need to be checked during inspection.
+**PS Number:** SIH26034
+
+**Problem Statement Title:**
+
+Software System to check compliance of Packaged Commodities under Legal Metrology(Packaged Commodities) Rules, 2011 by scanning products, images and labels.
+
+**Organization:** Ministry of Consumer Affairs, Food & Public Distribution
+
+**Category:** Software
+
+**Theme:** Miscellaneous
 
 ## Solution
 
@@ -49,6 +59,7 @@ Frontend Result
 - **Server:** Uvicorn
 - **Deployment:** Render
 - **Version Control:** Git, GitHub
+- **Development Environment:** VS Code
 
 ## Legal Framework
 
@@ -62,6 +73,10 @@ The prototype screens selected declarations based on the **Legal Metrology (Pack
 
 - [System Architecture](docs/architecture.md)
 - [Project Workflow](docs/workflow.md)
+
+## Screenshots
+
+Screenshots of the project are available in the `assets/screenshots/` folder.
 
 ## Disclaimer
 
